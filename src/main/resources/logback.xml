@@ -1,0 +1,31 @@
+<configuration>
+
+    <contextName>log-parser</contextName>
+
+    <logger name="me.moschops" level="DEBUG"/>
+    
+    <appender name="LOGFILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/log-parser.log</file>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/log-parser.%d{yyyy-MM-dd}.gz</fileNamePattern>
+            <maxHistory>7</maxHistory>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%date [%thread] %-5level %logger{36} - %msg%n%xException{10}</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%-5level %logger{36} - %msg%n%xException{10}</pattern>
+        </encoder>
+    </appender>
+
+    <root level="WARN">
+        <appender-ref ref="LOGFILE"/>
+        <appender-ref ref="STDOUT"/>
+    </root>
+
+</configuration>
