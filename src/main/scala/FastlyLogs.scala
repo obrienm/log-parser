@@ -28,7 +28,7 @@ object FastlyLogEntry {
       case _ => None
     }
 
-    val platform = fields(16) match {
+    val platform = fields(17) match {
       case "desktop" => R2
       case "next-gen-football" => Football
       case "next-gen-router" => NextGen
@@ -53,8 +53,9 @@ object FastlyLogEntry {
       cacheInteraction = cacheInteraction,
       passReason = passReasonOpt,
       hits = fields(15),
+      age = fields(16),
       platform = platform,
-      fastlyNode = fields(17)
+      fastlyNode = fields(18)
     )
   }
 
@@ -82,6 +83,7 @@ case class FastlyLogEntry(
                            cacheInteraction: CacheInteraction,
                            passReason: Option[PassReason],
                            hits: String,
+                           age: String,
                            platform: Platform,
                            fastlyNode: String
                            ) {
@@ -112,6 +114,7 @@ case class FastlyLogEntry(
       cacheInteraction + separator +
       passReason + separator +
       hits + separator +
+      age + separator +
       platform + separator +
       fastlyNode + """""""
   }
